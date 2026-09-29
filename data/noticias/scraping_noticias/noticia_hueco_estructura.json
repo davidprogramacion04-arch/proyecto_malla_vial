@@ -1,0 +1,22 @@
+[
+    {
+        "id_registro":1,
+        "fuente":"news.google.com",
+        "tipo_fuente":"noticia",
+        "autor_cuenta":null,
+        "titulo":"Google Noticias",
+        "fecha":"2026-09-15",
+        "fecha_publicacion":"2026-09-15T00:00:00.000Z",
+        "url":"https:\/\/news.google.com\/rss\/articles\/CBMisAFBVV95cUxOUWgzajJ0ZXY1WjJWRjdYUUd6WmNOYVhIY2RtVl8xekpwZU95UHJkMzlYWVpuVWw5UERMR3Y1U3FfbUhlbTNCY0E3ZmU2QWh5U3NMNmVnUnBIUXJ0MHdHb0lMQ01lY0h3ZG1fMzRXQjlKTUN2enJvZWU4X1g0V2cycmg1bUNSNFFCa1ktUHNEbTNJeklIQUZON1p4SnduZHVuN3N4bDdleGNBOXZlOGd5OQ?oc=5&hl=es-419&gl=US&ceid=US%3Aes-419",
+        "contenido":"Sellan huecos en puentes peatonales que eran utilizados para el tráfico de droga Bogota.gov.co",
+        "tema_vial":true,
+        "sentimiento":null,
+        "objetivo_sentimiento":null,
+        "score_relevancia":5,
+        "patrones_deterioro":"huecos",
+        "patrones_contexto":"bogota",
+        "metodo_extraccion":"rss_summary",
+        "fuente_descubrimiento":"Google News",
+        "consulta":"\"huecos\" Bogotá"
+    }
+]

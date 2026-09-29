@@ -1,0 +1,105 @@
+{
+  "fecha_auditoria": "2026-09-29T15:06:27-05:00",
+  "total_solicitudes": 12,
+  "total_creditos_consumidos": 742,
+  "limite_seguridad": 690,
+  "saldo_restante_cuenta": 0,
+  "historial": [
+    {
+      "solicitud_num": 1,
+      "timestamp": "2026-09-29T15:02:56-05:00",
+      "costo_creditos": 68,
+      "consumo_acumulado": 68,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 728
+    },
+    {
+      "solicitud_num": 2,
+      "timestamp": "2026-09-29T15:03:13-05:00",
+      "costo_creditos": 53,
+      "consumo_acumulado": 121,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 675
+    },
+    {
+      "solicitud_num": 3,
+      "timestamp": "2026-09-29T15:03:32-05:00",
+      "costo_creditos": 61,
+      "consumo_acumulado": 182,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 614
+    },
+    {
+      "solicitud_num": 4,
+      "timestamp": "2026-09-29T15:03:53-05:00",
+      "costo_creditos": 59,
+      "consumo_acumulado": 241,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 555
+    },
+    {
+      "solicitud_num": 5,
+      "timestamp": "2026-09-29T15:04:14-05:00",
+      "costo_creditos": 67,
+      "consumo_acumulado": 308,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 488
+    },
+    {
+      "solicitud_num": 6,
+      "timestamp": "2026-09-29T15:04:34-05:00",
+      "costo_creditos": 66,
+      "consumo_acumulado": 374,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 422
+    },
+    {
+      "solicitud_num": 7,
+      "timestamp": "2026-09-29T15:04:56-05:00",
+      "costo_creditos": 68,
+      "consumo_acumulado": 442,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 354
+    },
+    {
+      "solicitud_num": 8,
+      "timestamp": "2026-09-29T15:05:11-05:00",
+      "costo_creditos": 48,
+      "consumo_acumulado": 490,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 306
+    },
+    {
+      "solicitud_num": 9,
+      "timestamp": "2026-09-29T15:05:23-05:00",
+      "costo_creditos": 51,
+      "consumo_acumulado": 541,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 204
+    },
+    {
+      "solicitud_num": 10,
+      "timestamp": "2026-09-29T15:05:43-05:00",
+      "costo_creditos": 60,
+      "consumo_acumulado": 601,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 135
+    },
+    {
+      "solicitud_num": 11,
+      "timestamp": "2026-09-29T15:06:02-05:00",
+      "costo_creditos": 68,
+      "consumo_acumulado": 669,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 127
+    },
+    {
+      "solicitud_num": 12,
+      "timestamp": "2026-09-29T15:06:25-05:00",
+      "costo_creditos": 73,
+      "consumo_acumulado": 742,
+      "limite_configurado": 690,
+      "saldo_restante_cuenta": 0
+    }
+  ]
+}
