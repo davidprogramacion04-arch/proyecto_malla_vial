@@ -379,3 +379,35 @@ if df_comentarios is not None:
             
             fig_comp_time = px.line(
                 df_merged_time,
+                x='fecha_dt',
+                y=[c for c in df_merged_time.columns if c != 'fecha_dt'],
+                title="Volumen Temporal Comparativo: Comentarios en Twitter vs Cobertura de Prensa",
+                labels={'fecha_dt': 'Fecha', 'value': 'Volumen de Publicaciones'},
+                markers=True
+            )
+            st.plotly_chart(fig_comp_time, use_container_width=True)
+        else:
+            st.info("Información de fechas no disponible en el subconjunto filtrado.")
+            
+    with tab5:
+        st.subheader("Explorador Interactivo de Comentarios Ciudadanos (Twitter)")
+        st.write(f"Mostrando **{len(df_filtrado)}** registros coincidentes.")
+        
+        # Columnas a mostrar
+        cols_mostrar = ['autor_username', 'sentimiento_etiqueta', 'confianza_sentimiento', 'texto_limpio', 'menciones', 'fecha_publicacion', 'url']
+        cols_existentes = [c for c in cols_mostrar if c in df_filtrado.columns]
+        
+        st.dataframe(
+            df_filtrado[cols_existentes],
+            column_config={
+                "url": st.column_config.LinkColumn("Enlace Tweet"),
+                "confianza_sentimiento": st.column_config.NumberColumn("Confianza", format="%.2f"),
+                "texto_limpio": st.column_config.TextColumn("Texto del Comentario", width="large")
+            },
+            use_container_width=True,
+            hide_index=True
+        )
+
+else:
+    st.error("Error al cargar los conjuntos de datos. Verifique la ruta de los archivos CSV.")
+
