@@ -1,5 +1,5 @@
-﻿"""
-Dashboard Interactivo de PercepciÃ³n Ciudadana sobre la Malla Vial de BogotÃ¡
+"""
+Dashboard Interactivo de Percepción Ciudadana sobre la Malla Vial de Bogotá
 Desarrollado con Streamlit y Plotly.
 """
 
@@ -12,10 +12,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from pathlib import Path
 
-# ConfiguraciÃ³n de pÃ¡gina
+# Configuración de página
 st.set_page_config(
-    page_title="Malla Vial BogotÃ¡ - PercepciÃ³n Ciudadana",
-    page_icon="ðŸš§",
+    page_title="Malla Vial Bogotá - Percepción Ciudadana",
+    page_icon="🚧",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -67,7 +67,7 @@ def cargar_datos():
     path_sentimiento_noticias = base_dir / "data" / "noticias" / "scraping_noticias" / "noticias_contenido_candidatas.csv"
     
     if not path_sentimientos.exists():
-        st.error(f"No se encontrÃ³ el archivo de datos: {path_sentimientos}")
+        st.error(f"No se encontró el archivo de datos: {path_sentimientos}")
         return None, None, None
         
     df_comentarios = pd.read_csv(path_sentimientos)
@@ -82,7 +82,7 @@ def cargar_datos():
     else:
         df_noticias = None
 
-    # Unir el sentimiento calculado sobre el texto extraÃ­do con los metadatos RSS.
+    # Unir el sentimiento calculado sobre el texto extraído con los metadatos RSS.
     if df_noticias is not None and path_sentimiento_noticias.exists():
         df_sent_noticias = pd.read_csv(path_sentimiento_noticias)
         cols_sent = [c for c in ["id_registro", "sentimiento_codigo", "confianza_sentimiento_codigo", "estado_sentimiento_codigo", "url_original"] if c in df_sent_noticias.columns]
@@ -121,8 +121,8 @@ if df_comentarios is not None:
     candidato_disp = ["Solo Relevantes Malla Vial", "Todos los Registros"]
     candidato_sel = st.sidebar.radio("Filtro Relevancia Vial:", candidato_disp)
     
-    # Filtro BÃºsqueda Texto
-    busqueda_texto = st.sidebar.text_input("ðŸ” Buscar tÃ©rmino (ej. hueco, bache, GalÃ¡n):", "")
+    # Filtro Búsqueda Texto
+    busqueda_texto = st.sidebar.text_input("🔍 Buscar término (ej. hueco, bache, Galán):", "")
     
     # Aplicar Filtros al Dataframe Twitter
     df_filtrado = df_comentarios.copy()
@@ -142,7 +142,7 @@ if df_comentarios is not None:
             df_noticias_filtrado = df_noticias_filtrado[df_noticias_filtrado['titulo_limpio'].str.contains(busqueda_texto, case=False, na=False)]
 
     # --- CABECERA ---
-    st.markdown('<div class="main-header">ðŸš§ Tablero de Control: PercepciÃ³n Vial BogotÃ¡</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">🚧 Tablero de Control: Percepción Vial Bogotá</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-header">Monitoreo multinivel: Redes Sociales (Twitter/X) vs Prensa Digital (Google News)</div>', unsafe_allow_html=True)
     
     # --- METRICAS CLAVE (KPIs) ---
@@ -158,23 +158,23 @@ if df_comentarios is not None:
     with col2:
         st.metric("Noticias de Prensa (Google)", f"{total_news}")
     with col3:
-        st.metric("PercepciÃ³n Negativa Twitter ðŸ˜¡", f"{pct_negativo:.1f}%", delta=f"{pct_negativo:.1f}%", delta_color="inverse")
+        st.metric("Percepción Negativa Twitter 😡", f"{pct_negativo:.1f}%", delta=f"{pct_negativo:.1f}%", delta_color="inverse")
     with col4:
-        st.metric("PercepciÃ³n Positiva Twitter ðŸ˜ƒ", f"{pct_positivo:.1f}%")
+        st.metric("Percepción Positiva Twitter 😃", f"{pct_positivo:.1f}%")
         
     st.markdown("---")
     
-    # --- PESTAÃ‘AS PRINCIPALES ---
+    # --- PESTAÑAS PRINCIPALES ---
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "ðŸ“Š DistribuciÃ³n Sentimiento", 
-        "ðŸ“° Prensa Google News", 
-        "ðŸ›ï¸ AnÃ¡lisis por Entidad", 
-        "ðŸ“… EvoluciÃ³n Temporal", 
-        "ðŸ” Explorador Twitter"
+        "📊 Distribución Sentimiento", 
+        "📰 Prensa Google News", 
+        "🏛️ Análisis por Entidad", 
+        "📅 Evolución Temporal", 
+        "🔍 Explorador Twitter"
     ])
     
     with tab1:
-        st.subheader("DistribuciÃ³n General del Sentimiento Ciudadano en Twitter")
+        st.subheader("Distribución General del Sentimiento Ciudadano en Twitter")
         
         c1, c2 = st.columns([1, 1])
         
@@ -189,7 +189,7 @@ if df_comentarios is not None:
                 color='Sentimiento',
                 color_discrete_map={'NEGATIVO': '#E53935', 'NEUTRO': '#FB8C00', 'POSITIVO': '#43A047'},
                 hole=0.45,
-                title="ProporciÃ³n de Sentimiento (RoBERTuito)"
+                title="Proporción de Sentimiento (RoBERTuito)"
             )
             fig_pie.update_traces(textinfo='percent+label')
             st.plotly_chart(fig_pie, use_container_width=True)
@@ -207,8 +207,8 @@ if df_comentarios is not None:
             fig_bar.update_layout(showlegend=False)
             st.plotly_chart(fig_bar, use_container_width=True)
             
-        # Top tÃ©rminos detectados
-        st.markdown("#### ðŸ·ï¸ TÃ©rminos Frecuentes Relacionados con Deterioro Vial")
+        # Top términos detectados
+        st.markdown("#### 🏷️ Términos Frecuentes Relacionados con Deterioro Vial")
         all_terms = []
         for term_str in df_filtrado['terminos_deterioro_detectados'].dropna():
             try:
@@ -219,12 +219,12 @@ if df_comentarios is not None:
                 
         if all_terms:
             df_terms = pd.DataFrame(pd.Series(all_terms).value_counts().reset_index())
-            df_terms.columns = ['TÃ©rmino / Palabra Clave', 'Frecuencia']
+            df_terms.columns = ['Término / Palabra Clave', 'Frecuencia']
             
             fig_terms = px.bar(
                 df_terms.head(10),
                 x='Frecuencia',
-                y='TÃ©rmino / Palabra Clave',
+                y='Término / Palabra Clave',
                 orientation='h',
                 color='Frecuencia',
                 color_continuous_scale='Reds',
@@ -234,14 +234,14 @@ if df_comentarios is not None:
             st.plotly_chart(fig_terms, use_container_width=True)
 
     with tab2:
-        st.subheader("ðŸ“° AnÃ¡lisis de Cobertura en Medios de Prensa (Google News)")
-        st.write(f"Se identificaron **{len(df_noticias_filtrado)}** titulares y artÃ­culos sobre la malla vial de BogotÃ¡ recopilados vÃ­a Google News.")
+        st.subheader("📰 Análisis de Cobertura en Medios de Prensa (Google News)")
+        st.write(f"Se identificaron **{len(df_noticias_filtrado)}** titulares y artículos sobre la malla vial de Bogotá recopilados vía Google News.")
         
         noticias_analizadas = df_noticias_filtrado[
             df_noticias_filtrado.get("estado_sentimiento_codigo", pd.Series(index=df_noticias_filtrado.index, dtype=object)) == "analizado"
         ].copy()
         st.markdown("#### Sentimiento del contenido de las noticias")
-        st.caption("El modelo clasifica el tono del texto extraÃ­do de cada artÃ­culo; no mide directamente la opiniÃ³n del medio ni de la ciudadanÃ­a.")
+        st.caption("El modelo clasifica el tono del texto extraído de cada artículo; no mide directamente la opinión del medio ni de la ciudadanía.")
         if not noticias_analizadas.empty:
             cn_sent1, cn_sent2 = st.columns(2)
             conteo_sent_noticias = noticias_analizadas["sentimiento_etiqueta_noticia"].value_counts().reindex(
@@ -252,7 +252,7 @@ if df_comentarios is not None:
                 fig_sent_noticias = px.pie(
                     conteo_sent_noticias, names="Sentimiento", values="Noticias",
                     color="Sentimiento", color_discrete_map=colores_sent, hole=0.45,
-                    title="DistribuciÃ³n del sentimiento (RoBERTuito)",
+                    title="Distribución del sentimiento (RoBERTuito)",
                 )
                 fig_sent_noticias.update_traces(textinfo="percent+label")
                 st.plotly_chart(fig_sent_noticias, use_container_width=True)
@@ -265,7 +265,7 @@ if df_comentarios is not None:
                     title="Confianza del modelo por sentimiento",
                 )
                 st.plotly_chart(fig_conf_noticias, use_container_width=True)
-            st.caption(f"ArtÃ­culos analizados: {len(noticias_analizadas)} de {len(df_noticias_filtrado)} en el filtro actual.")
+            st.caption(f"Artículos analizados: {len(noticias_analizadas)} de {len(df_noticias_filtrado)} en el filtro actual.")
         else:
             st.info("No hay noticias con texto analizado para los filtros seleccionados. Ejecuta src/modelos/01_analizar_sentimiento_noticias.py para generarlo.")
 
@@ -276,14 +276,14 @@ if df_comentarios is not None:
                 # Extraer medio o fuente de prensa si existe
                 df_noticias_filtrado['Medio'] = df_noticias_filtrado['titulo'].apply(lambda x: str(x).split(' - ')[-1] if ' - ' in str(x) else 'Otros')
                 top_medios = df_noticias_filtrado['Medio'].value_counts().head(10).reset_index()
-                top_medios.columns = ['Medio de ComunicaciÃ³n', 'ArtÃ­culos Publicados']
+                top_medios.columns = ['Medio de Comunicación', 'Artículos Publicados']
                 
                 fig_medios = px.bar(
                     top_medios,
-                    x='ArtÃ­culos Publicados',
-                    y='Medio de ComunicaciÃ³n',
+                    x='Artículos Publicados',
+                    y='Medio de Comunicación',
                     orientation='h',
-                    color='ArtÃ­culos Publicados',
+                    color='Artículos Publicados',
                     color_continuous_scale='Blues',
                     title="Principales Medios que Reportan la Malla Vial"
                 )
@@ -291,18 +291,18 @@ if df_comentarios is not None:
                 st.plotly_chart(fig_medios, use_container_width=True)
                 
             with cn2:
-                # DistribuciÃ³n del score de relevancia en noticias
+                # Distribución del score de relevancia en noticias
                 fig_score = px.histogram(
                     df_noticias_filtrado,
                     x='score_relevancia_preliminar',
                     nbins=5,
-                    title="DistribuciÃ³n del Score de Relevancia Vial (Noticias)",
+                    title="Distribución del Score de Relevancia Vial (Noticias)",
                     labels={'score_relevancia_preliminar': 'Score de Relevancia (0 a 5)'},
                     color_discrete_sequence=['#1E88E5']
                 )
                 st.plotly_chart(fig_score, use_container_width=True)
                 
-            st.markdown("#### ðŸ“‹ Listado de Noticias y Reportajes")
+            st.markdown("#### 📋 Listado de Noticias y Reportajes")
             cols_noticias = ['titulo_limpio', 'fecha_publicacion_estandarizada', 'score_relevancia_preliminar', 'sentimiento_etiqueta_noticia', 'confianza_sentimiento_codigo', 'motivos_relevancia_preliminar', 'url']
             cols_exist_noticias = [c for c in cols_noticias if c in df_noticias_filtrado.columns]
             
@@ -321,8 +321,8 @@ if df_comentarios is not None:
             st.info("No se encontraron noticias coincidentes con los filtros seleccionados.")
             
     with tab3:
-        st.subheader("EvaluaciÃ³n Institucional y Autoridades (@Menciones)")
-        st.write("AnÃ¡lisis de la percepciÃ³n dirigida hacia las principales entidades pÃºblicas encargadas de la infraestructura y movilidad en Twitter.")
+        st.subheader("Evaluación Institucional y Autoridades (@Menciones)")
+        st.write("Análisis de la percepción dirigida hacia las principales entidades públicas encargadas de la infraestructura y movilidad en Twitter.")
         
         if df_entidades is not None and not df_entidades.empty:
             c_ent1, c_ent2 = st.columns([1, 1])
@@ -348,7 +348,7 @@ if df_comentarios is not None:
                     df_entidades,
                     x='Mencion_Entidad',
                     y='%_Negativo',
-                    title="% PercepciÃ³n Negativa por Entidad",
+                    title="% Percepción Negativa por Entidad",
                     color='%_Negativo',
                     color_continuous_scale='Reds',
                     text='%_Negativo'
@@ -359,17 +359,17 @@ if df_comentarios is not None:
             st.markdown("#### Tabla Detallada por Entidad")
             st.dataframe(df_entidades, use_container_width=True)
         else:
-            st.info("No se encontrÃ³ el resumen consolidado de entidades.")
+            st.info("No se encontró el resumen consolidado de entidades.")
             
     with tab4:
-        st.subheader("EvoluciÃ³n Temporal de Reportes (Twitter vs Google News)")
+        st.subheader("Evolución Temporal de Reportes (Twitter vs Google News)")
         
-        # ComparaciÃ³n temporal
+        # Comparación temporal
         df_time_tw = pd.DataFrame()
         df_time_news = pd.DataFrame()
         
         if 'fecha_dt' in df_filtrado.columns and not df_filtrado['fecha_dt'].isna().all():
-            df_time_tw = df_filtrado.groupby(df_filtrado['fecha_dt'].dt.date).size().reset_index(name='Twitter (CiudadanÃ­a)')
+            df_time_tw = df_filtrado.groupby(df_filtrado['fecha_dt'].dt.date).size().reset_index(name='Twitter (Ciudadanía)')
             
         if not df_noticias_filtrado.empty and 'fecha_dt' in df_noticias_filtrado.columns and not df_noticias_filtrado['fecha_dt'].isna().all():
             df_time_news = df_noticias_filtrado.groupby(df_noticias_filtrado['fecha_dt'].dt.date).size().reset_index(name='Google News (Prensa)')
@@ -379,34 +379,3 @@ if df_comentarios is not None:
             
             fig_comp_time = px.line(
                 df_merged_time,
-                x='fecha_dt',
-                y=[c for c in df_merged_time.columns if c != 'fecha_dt'],
-                title="Volumen Temporal Comparativo: Comentarios en Twitter vs Cobertura de Prensa",
-                labels={'fecha_dt': 'Fecha', 'value': 'Volumen de Publicaciones'},
-                markers=True
-            )
-            st.plotly_chart(fig_comp_time, use_container_width=True)
-        else:
-            st.info("InformaciÃ³n de fechas no disponible en el subconjunto filtrado.")
-            
-    with tab5:
-        st.subheader("Explorador Interactivo de Comentarios Ciudadanos (Twitter)")
-        st.write(f"Mostrando **{len(df_filtrado)}** registros coincidentes.")
-        
-        # Columnas a mostrar
-        cols_mostrar = ['autor_username', 'sentimiento_etiqueta', 'confianza_sentimiento', 'texto_limpio', 'menciones', 'fecha_publicacion', 'url']
-        cols_existentes = [c for c in cols_mostrar if c in df_filtrado.columns]
-        
-        st.dataframe(
-            df_filtrado[cols_existentes],
-            column_config={
-                "url": st.column_config.LinkColumn("Enlace Tweet"),
-                "confianza_sentimiento": st.column_config.NumberColumn("Confianza", format="%.2f"),
-                "texto_limpio": st.column_config.TextColumn("Texto del Comentario", width="large")
-            },
-            use_container_width=True,
-            hide_index=True
-        )
-
-else:
-    st.error("Error al cargar los conjuntos de datos. Verifique la ruta de los archivos CSV.")
