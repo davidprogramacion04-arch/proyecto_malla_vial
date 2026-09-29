@@ -330,14 +330,14 @@ if df_comentarios is not None:
             with c_ent1:
                 fig_ent = px.bar(
                     df_entidades,
-                    x='Mencion_Entidad',
-                    y=['Comentarios_Negativos', 'Comentarios_Neutros', 'Comentarios_Positivos'],
+                    x='entidad',
+                    y=['negativos', 'neutros', 'positivos'],
                     title="Sentimientos por Entidad / Funcionario",
                     labels={'value': 'Cantidad de Comentarios', 'variable': 'Sentimiento'},
                     color_discrete_map={
-                        'Comentarios_Negativos': '#E53935',
-                        'Comentarios_Neutros': '#FB8C00',
-                        'Comentarios_Positivos': '#43A047'
+                        'negativos': '#E53935',
+                        'neutros': '#FB8C00',
+                        'positivos': '#43A047'
                     },
                     barmode='stack'
                 )
@@ -346,12 +346,12 @@ if df_comentarios is not None:
             with c_ent2:
                 fig_pct = px.bar(
                     df_entidades,
-                    x='Mencion_Entidad',
-                    y='%_Negativo',
+                    x='entidad',
+                    y='pct_negativos',
                     title="% Percepción Negativa por Entidad",
-                    color='%_Negativo',
+                    color='pct_negativos',
                     color_continuous_scale='Reds',
-                    text='%_Negativo'
+                    text='pct_negativos'
                 )
                 fig_pct.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
                 st.plotly_chart(fig_pct, use_container_width=True)
